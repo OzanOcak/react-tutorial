@@ -1,12 +1,30 @@
 import ReactDOM from "react-dom";
+import React from "react";
 
-const styleObj = {
-  color: "green",
-  backGround: "blue",
-  fontSize: "80px",
+const imageStyle = {
+  borderRadius: "200px",
+  border: "2px solid red",
 };
 
-const str = "hello world!";
-const text = <h1 style={styleObj}>{str}</h1>;
+const containerStyle = {
+  textAlign: "center",
+};
 
-ReactDOM.render(text, document.getElementById("root"));
+const avatar = (
+  <>
+    <div style={containerStyle}>
+      <img src="https://picsum.photos/200" alt="avatar" style={imageStyle} />
+      <h3>Tom Hawks</h3>
+    </div>
+    <div style={containerStyle}>
+      <img src="https://picsum.photos/200" alt="avatar" style={imageStyle} />
+      <h3>Tom Hawks</h3>
+    </div>
+    <div style={containerStyle}>
+      <img src="https://picsum.photos/200" alt="avatar" style={imageStyle} />
+      <h3>Tom Hawks</h3>
+    </div>
+  </>
+);
+
+ReactDOM.render(avatar, document.getElementById("root"));
