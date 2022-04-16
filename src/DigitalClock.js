@@ -1,38 +1,64 @@
-import { Component } from "react";
+import React, { Component } from "react";
+
+import { pad } from "./utils";
+import Reminder from "./Reminder";
 
 class DigitalClock extends Component {
   constructor(props) {
     super(props);
 
+    console.log("constructor");
+
     this.state = {
       time: this.getTimeString(new Date()),
+      showReminder: false,
     };
 
-    setInterval(() => {
+    this.tickInterval = null;
+  }
+
+  componentDidMount() {
+    console.log("mount");
+    this.tickInterval = setInterval(() => {
       this.setState({
         time: this.getTimeString(new Date()),
       });
     }, 1000);
   }
 
+  componentWillUnmount() {
+    console.log("unmount");
+    clearInterval(this.tickInterval);
+  }
+
+  componentDidUpdate() {
+    console.log("update");
+    const currentTime = this.getTimeString(new Date());
+    const reminderTime = this.props.reminder.time;
+    if (currentTime === reminderTime) {
+      if (!this.state.showReminder) {
+        this.setState({
+          showReminder: true,
+        });
+      }
+    }
+  }
+
   getTimeString(time) {
-    return `
-            ${time.getHours() < 10 ? "0" + time.getHours() : time.getHours()}:
-            ${
-              time.getMinutes() < 10
-                ? "0" + time.getMinutes()
-                : time.getMinutes()
-            }:
-            ${
-              time.getSeconds() < 10
-                ? "0" + time.getSeconds()
-                : time.getSeconds()
-            }
-        `;
+    const hr = time.getHours();
+    const min = time.getMinutes();
+    const sec = time.getSeconds();
+    return `${pad(hr)}:${pad(min)}:${pad(sec)}`;
   }
 
   render() {
-    return <div className="clock">{this.state.time}</div>;
+    console.log("render");
+    return (
+      <div>
+        <div className="clock">{this.state.time}</div>
+        {this.state.showReminder && <Reminder data={this.props.reminder} />}
+      </div>
+    );
   }
 }
 

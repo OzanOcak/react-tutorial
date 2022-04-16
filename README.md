@@ -146,3 +146,36 @@ render() {
 ```
 
 getTimeString function will be called every sec in setInterval and because the state chance every second react will recognize will diff algo and render the jsx element
+
+## LifeCycle
+
+after every components rendered, by order
+firstly **componentDidMount()** runs, this function generally used for fetching data
+**componentWillUnmount()** is used for just before unmounting component
+and **componentWillUnmount()** is used for the updated components
+
+```javascript
+componentDidMount() {
+    this.tickInterval = setInterval(() => {
+      this.setState({
+        time: this.getTimeString(new Date()),
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.tickInterval);
+  }
+
+  componentDidUpdate() {
+    const currentTime = this.getTimeString(new Date());
+    const reminderTime = this.props.reminder.time;
+    if (currentTime === reminderTime) {
+      if (!this.state.showReminder) {
+        this.setState({
+          showReminder: true,
+        });
+      }
+    }
+  }
+```
