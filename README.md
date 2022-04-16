@@ -1,4 +1,8 @@
-# create a react app with cra
+# --- React Tutorial ---
+
+## Hello World
+
+create a react app with cra
 
 ```console
 npx create-react-app react-dev
@@ -23,3 +27,57 @@ ReactDOM.render(text, document.getElementById("root"));
 
 ReactDom is a js library to create virtual dom consist of js objects in memory.
 With react we can write html like code in js file and we can render this html like element(JSX) in ReactDom, which will create another dom as a state and will keep updating it if state change. React use diff algorithm to check id virtual dom change and inject new element after create real dom element.
+
+## Creating list with basic Jsx
+
+It will be similar as above sample
+
+```javascript
+<>
+  <div style={containerStyle}>
+    <img src="https://picsum.photos/200" alt="avatar" style={imageStyle} />
+    <h3>Tom Hawks</h3>
+  </div>
+  ...
+</>
+```
+
+There are two style objects in the file
+
+```javascript
+const imageStyle = { borderRadius: "200px", border: "2px solid red" };
+const containerStyle = { textAlign: "center" };
+```
+
+And the variable will be rendered in RenderDom
+
+```javascript
+ReactDOM.render(avatar, document.getElementById("root"));
+```
+
+## Dividing files
+
+ReactDom is supported createRoot methods, so it is updated. then App jsx element rendered <App /> is a function call and lastly App file imported.
+
+```javascript
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+```
+
+global.css file created instead of js modules, css definations changed accordingly
+ex. backgroundColor: "yellow" ---> background-color: yellow;
+
+```css
+body {
+  background-color: yellow;
+}
+.container {
+  text-align: center;
+}
+.container img {
+  border-radius: 200px;
+  border: 2px solid red;
+}
+```
