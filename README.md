@@ -103,3 +103,46 @@ lastly the User component/ function can be called now
 ```javascript
 <User name="Johny Deep" url="https://picsum.photos/201" />
 ```
+
+## setting up state with class component
+
+if the state is needed, class component should be used
+
+```javascript
+import { Component } from "react";
+
+class DigitalClock extends Component {
+```
+
+the class component extends react Component class in order to have a state
+
+```javascript
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      time: this.getTimeString(new Date()),
+    };
+    setInterval(() => {
+      this.setState({
+        time: this.getTimeString(new Date()),
+      });
+    }, 1000);
+  }
+```
+
+the constructor gets the variables and methods for super class, state is also is implemented in super class, since it is an object, it can reach and assign tru this which is a pointer like in c state \* = & state , all objects can be accessed via reference in js.
+this is [] in asm
+[state] = {}
+
+setInterval and setTimeout are part of web API in the browser, they are asynchronously processed
+and return execution stack when it is ready.we can once implement setInterval in constructor and it will be working in the background
+
+```javascript
+getTimeString(time) {
+    return `${time.getHours() < 10 ? "0" + time.getHours() : time.getHours()}:`
+render() {
+    return <div className="clock">{this.state.time}</div>;
+```
+
+getTimeString function will be called every sec in setInterval and because the state chance every second react will recognize will diff algo and render the jsx element
