@@ -81,3 +81,25 @@ body {
   border: 2px solid red;
 }
 ```
+
+# Passing Props
+
+create User.js with an anonymous arrow function and assign to a const variable , the function will be encapsulated which means cant be accessed to outside unless the const variable is not call as a function. Arrow function once called, it is lexical scope to where it is called since it is const variable.
+
+```javascript
+const User = (props) => {
+  return (
+    <div className="container">
+      <img src={props.url} alt="avatar" />
+      <h3>{props.name}</h3>
+    </div>
+  );
+};
+export default User;
+```
+
+lastly the User component/ function can be called now
+
+```javascript
+<User name="Johny Deep" url="https://picsum.photos/201" />
+```

@@ -1,24 +1,12 @@
 import "./global.css";
+import User from "./User";
 
 const App = () => {
   return (
     <div>
-      <div className="container">
-        <img
-          src="https://picsum.photos/200"
-          className="container"
-          alt="avatar"
-        />
-        <h3>Tom Hawks</h3>
-      </div>
-      <div className="container">
-        <img src="https://picsum.photos/200" alt="avatar" />
-        <h3>Tom Hawks</h3>
-      </div>
-      <div className="container">
-        <img src="https://picsum.photos/200" alt="avatar" />
-        <h3>Tom Hawks</h3>
-      </div>
+      <User name="Johny Deep" url="https://picsum.photos/201" />
+      <User name="Tom Hanks" url="https://picsum.photos/200" />
+      <User name="Brad Pitt" url="https://picsum.photos/203" />
     </div>
   );
 };
