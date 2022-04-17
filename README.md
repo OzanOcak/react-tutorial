@@ -179,3 +179,40 @@ componentDidMount() {
     }
   }
 ```
+
+### deploying the app to github page
+
+```console
+npm install gh-pages --save-dev
+```
+
+this commend will add gh-pages dependency in package.json, open the package.json and add
+url of homepage above name of the app in package.json
+
+```json
+homepage: "https://OzanOcak.github.io/react-tutorial",
+```
+
+then add predeploy and deploy scripts in scripts abject in package.json
+
+```json
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build",
+```
+
+if git is not initialized already, and regular process to push the code the already created github project
+
+```console
+git init
+git add .
+git commit -m "deploying gh-pages"
+git push -u origin main
+```
+
+Lastly to deploy the code gh-page run below script
+
+```console
+npm run deploy
+```
+
+The page will be published at [https://OzanOcak.github.io/react-tutorial](https://OzanOcak.github.io/react-tutorial)
